@@ -1,0 +1,315 @@
+/*
+		 * Shape sınıfının en tepede olduğu bir hiyerarşi düşünün. Shape‘in üzerinde
+		 * aşağıdaki metotlar vardır: • void draw(), • void erase(), • double
+		 * calculateArea() • double calculateCircumference() . Shape sınıfının Circle,
+		 * Rectangle, Square ve Triangle isimli altsınıfları vardır. a.Bu alt sınıflarda
+		 * metotları override edin, bu sırada mümkünse “super”i kullanın. b.
+		 * Sınıflardaki equals(), hashCode() ve toString() metotlarını override edin. c.
+		 * ShapeTest sınıfında main metotta random Shape nesneleri üretip üzerlerinde
+		 * metot çağrıları yapın.
+		 */
+
+public class Shape {
+	protected String name;
+	
+	public Shape(String name) {
+		this.name = name;
+	}
+	public void draw() {
+		System.out.println("Shape is drawing");
+	}
+	public void erase() {
+		System.out.println("Shape is erasing");
+	}
+	public double calculateArea() {
+		return 0 ;
+	}
+	public double calculateCircumference() {
+		return 0;
+	}
+}
+public class Rectangle extends Shape {
+	private int row;
+	private int column;
+	
+	public Rectangle(String name, int row, int column) {
+		super(name);
+		this.row = row;
+		this.column = column;
+	}
+	
+	@Override
+	public void draw() {
+		for (int i =0; i<row; i++) {
+			for (int j =0; j<column; j++) {
+				if ( i ==0 | i== row-1 ) {
+					System.out.print("*");	
+				}
+				else {
+					if (j==0 | j==column-1 )
+						System.out.print("*");
+					else
+						System.out.print(" ");
+				}
+			}System.out.println();
+
+		}
+		
+	}
+	@Override
+	public void erase() {
+		System.out.println("The rectangle has been deleted.");
+	}
+	@Override
+	public double calculateArea() {
+		return row*column ;
+	}
+	@Override
+	public double calculateCircumference() {
+		return 2*(row+column);
+	}
+	@Override
+	public String toString() {
+		return "Rectangle [name=" + name + ", row=" + row + ", column=" + column + ", calculateArea="
+				+ calculateArea() + ", calculateCircumference=" + calculateCircumference() + "]";
+	}
+	@Override
+	public int hashCode() {
+		return  row+ column + name.hashCode();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		Rectangle p1 = (Rectangle)obj;
+		boolean b = false;
+		if (row == p1.row & column == p1.column & name.equals(p1.name))
+			b = true;
+		return b;
+	}
+}
+public class Square extends Shape {
+	private int edge;
+	
+	public Square (String name,int edge) {
+		super(name);
+		this.edge = edge;
+	}
+	public void draw() {
+		for (int i =0; i<edge; i++) {
+			for (int j =0; j<edge; j++) {
+				if ( i ==0 | i== edge-1 ) {
+					System.out.print("*");	
+				}
+				else {
+					if (j==0 | j==edge-1 )
+						System.out.print("*");
+					else
+						System.out.print(" ");
+				}
+			}System.out.println();
+		}		
+	}
+	@Override
+	public void erase() {
+		System.out.println("The square has been deleted.");
+	}
+	@Override
+	public double calculateArea() {
+		return edge*edge ;
+	}
+	@Override
+	public double calculateCircumference() {
+		return 4*edge;
+	}
+	@Override
+	public String toString() {
+		return "Square [name=" + name + ", edge=" + edge + ", calculateArea=" + calculateArea()
+				+ ", calculateCircumference=" + calculateCircumference() + "]";
+	}
+	@Override
+	public int hashCode() {
+		return edge+ name.hashCode();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		Square s1 = (Square)obj;
+		boolean b = false;
+		if (edge == s1.edge)
+			b = true;
+		return b;
+	}
+}
+public class Triangle extends Shape {
+private int height;
+
+public Triangle(String name,int height) {
+	super(name);
+	this.height = height;
+	
+}
+public double hypotenuse() {
+	int baseOfTriangle = 2*height -1;
+	double calculateOfHypotenuse = (height*height) + (baseOfTriangle*baseOfTriangle);
+	double hypotenuse = Math.sqrt(calculateOfHypotenuse);
+	return hypotenuse;
+}
+public void draw() {
+	for (int i =0; i<height; i++) {
+		for (int j = 0; j <= i *2; j++) {
+			System.out.print("*");
+		}
+			System.out.println("");
+		}
+}
+@Override
+public void erase() {
+	System.out.println("The triangle has been deleted.");
+}
+@Override
+public double calculateArea() {
+	double area = height* (2*height-1) /2 ;
+	return area;
+}
+@Override
+public double calculateCircumference() {
+	double circumference =  height+(2*height-1)+hypotenuse();
+	return circumference;
+}
+@Override
+public String toString() {
+	return "Triangle [name=" + name + ", calculateArea=" + calculateArea() + ", calculateCircumference="
+			+ calculateCircumference() + "]";
+}
+@Override
+public int hashCode() {
+	return (int) (calculateArea()+ name.hashCode());
+}
+@Override
+public boolean equals(Object obj) {
+	Triangle t1 = (Triangle)obj;
+	boolean b = false;
+	if (calculateArea() == t1.calculateArea())
+		b = true;
+	return b;
+}
+}
+public class Circle extends Shape {
+private double radyan;
+public Circle(String name, double radyan) {
+	super(name);
+	this.radyan = radyan;
+}
+@Override
+public void draw() {
+	System.out.println("The circle is drawn.");
+}
+@Override
+public void erase() {
+	System.out.println("The circle has been deleted.");
+}
+@Override
+public double calculateArea() {
+	return Math.PI*radyan*radyan;
+}
+@Override
+public double calculateCircumference() {
+	return 2* Math.PI * radyan;
+}
+@Override
+public String toString() {
+	return "Circle [radyan=" + radyan + ", calculateArea=" + calculateArea() + ", calculateCircumference= "+ calculateCircumference() + "]";
+}
+@Override
+public int hashCode() {
+	return (int) (radyan+ calculateArea());
+}
+@Override
+public boolean equals(Object obj) {
+	Circle c1 = (Circle)obj;
+	boolean b = false;
+	if (radyan == c1.radyan)
+		b = true;
+	return b;
+}
+}
+public class ShapeTest {
+
+	public static void main(String[] args) {
+		
+		Shape rectangle = new Rectangle("RectangleABC",10,5);
+		Shape rectangle1 = new Rectangle("RectangleDEF",10,5);
+		
+		Shape square = new Square("Square",5);
+		Shape square1 = new Square("Square",5);
+		
+		Shape triangle = new Triangle("TriangleKLM",4);
+		Shape triangle1 = new Triangle("TriangleABC",6);
+		
+		Shape circle = new Circle("Circle",6);
+		Shape circle1 = new Circle("Circle",4);
+		
+		//For the Rectangle:
+		rectangle.draw();
+		rectangle.erase();
+		System.out.println(rectangle.calculateCircumference());
+		System.out.println(rectangle.calculateArea());
+		System.out.println("Rectangle info: "+rectangle.toString());
+		System.out.println("Rectangle1 info: "+rectangle1.toString());
+		System.out.println("hashCode of shapeR: "+rectangle.hashCode());
+		System.out.println("hashCode of shapeR1: "+rectangle1.hashCode());
+		if (rectangle.equals(rectangle1) & rectangle.hashCode() == rectangle1.hashCode())
+			System.out.println(rectangle + " and " + rectangle1 + " are equal.");
+		else
+			System.out.println(rectangle + " and " + rectangle1 + " are not equal.");
+		System.out.println();
+		System.out.println("**********************");
+		
+		//For the Square:
+		square.draw();
+		square.erase();
+		System.out.println(square.calculateCircumference());
+		System.out.println(square.calculateArea());
+		System.out.println("Square info: "+square.toString());
+		System.out.println("Square1 info: "+square1.toString());
+		System.out.println("hashCode of shapeS: "+square.hashCode());
+		System.out.println("hashCode of shapeS1: "+square1.hashCode());
+		if (square.equals(square1) & square.hashCode() == square1.hashCode() )
+			System.out.println(square + " and " + square1 + " are equal.");
+		else
+			System.out.println(square + " and " + square1 + " are not equal.");
+		
+		System.out.println();
+		System.out.println("**********************");
+		
+		//For the Triangle:
+		triangle.draw();
+		triangle.erase();
+		System.out.println(triangle.calculateCircumference());
+		System.out.println(triangle.calculateArea());
+		System.out.println("Triangle info: "+triangle.toString());
+		System.out.println("Triangle1 info: "+triangle1.toString());
+		System.out.println("hashCode of shapeT: "+triangle.hashCode());
+		System.out.println("hashCode of shapeT1: "+triangle1.hashCode());
+		if (triangle.equals(triangle1) & triangle.hashCode() == triangle1.hashCode() )
+			System.out.println(triangle + " and " + triangle1 + " are equal.");
+		else
+			System.out.println(triangle + " and " + triangle1 + " are not equal.");
+		System.out.println();
+		System.out.println("**********************");
+		
+		//For the Circle:
+		circle.draw();
+		circle.erase();
+		System.out.println(circle.calculateCircumference());
+		System.out.println(circle.calculateArea());
+		System.out.println("Circle info: "+circle.toString());
+		System.out.println("Circle1 info: "+circle1.toString());
+		System.out.println("hashCode of shapeC: "+circle.hashCode());
+		System.out.println("hashCode of shapeC1: "+circle1.hashCode());
+		if (circle.equals(circle1) & circle.hashCode() == circle1.hashCode() )
+			System.out.println(circle + " and " + circle1 + " are equal.");
+		else
+			System.out.println(circle + " and " + circle1 + " are not equal.");
+		
+	}
+
+}
