@@ -254,8 +254,8 @@ public class ShapeTest {
 		System.out.println(rectangle.calculateArea());
 		System.out.println("Rectangle info: "+rectangle.toString());
 		System.out.println("Rectangle1 info: "+rectangle1.toString());
-		System.out.println("hashCode of shapeR: "+rectangle.hashCode());
-		System.out.println("hashCode of shapeR1: "+rectangle1.hashCode());
+		System.out.println("hashCode of rectangle: "+rectangle.hashCode());
+		System.out.println("hashCode of rectangle1: "+rectangle1.hashCode());
 		if (rectangle.equals(rectangle1) & rectangle.hashCode() == rectangle1.hashCode())
 			System.out.println(rectangle + " and " + rectangle1 + " are equal.");
 		else
@@ -270,8 +270,8 @@ public class ShapeTest {
 		System.out.println(square.calculateArea());
 		System.out.println("Square info: "+square.toString());
 		System.out.println("Square1 info: "+square1.toString());
-		System.out.println("hashCode of shapeS: "+square.hashCode());
-		System.out.println("hashCode of shapeS1: "+square1.hashCode());
+		System.out.println("hashCode of square: "+square.hashCode());
+		System.out.println("hashCode of square1: "+square1.hashCode());
 		if (square.equals(square1) & square.hashCode() == square1.hashCode() )
 			System.out.println(square + " and " + square1 + " are equal.");
 		else
@@ -287,8 +287,8 @@ public class ShapeTest {
 		System.out.println(triangle.calculateArea());
 		System.out.println("Triangle info: "+triangle.toString());
 		System.out.println("Triangle1 info: "+triangle1.toString());
-		System.out.println("hashCode of shapeT: "+triangle.hashCode());
-		System.out.println("hashCode of shapeT1: "+triangle1.hashCode());
+		System.out.println("hashCode of triangle: "+triangle.hashCode());
+		System.out.println("hashCode of triangle1: "+triangle1.hashCode());
 		if (triangle.equals(triangle1) & triangle.hashCode() == triangle1.hashCode() )
 			System.out.println(triangle + " and " + triangle1 + " are equal.");
 		else
@@ -303,13 +303,11 @@ public class ShapeTest {
 		System.out.println(circle.calculateArea());
 		System.out.println("Circle info: "+circle.toString());
 		System.out.println("Circle1 info: "+circle1.toString());
-		System.out.println("hashCode of shapeC: "+circle.hashCode());
-		System.out.println("hashCode of shapeC1: "+circle1.hashCode());
+		System.out.println("hashCode of circle: "+circle.hashCode());
+		System.out.println("hashCode of circle1: "+circle1.hashCode());
 		if (circle.equals(circle1) & circle.hashCode() == circle1.hashCode() )
 			System.out.println(circle + " and " + circle1 + " are equal.");
 		else
-			System.out.println(circle + " and " + circle1 + " are not equal.");
-		
+			System.out.println(circle + " and " + circle1 + " are not equal.");		
 	}
-
 }
